@@ -1,0 +1,36 @@
+//
+//  HorizontalLine.swift
+//  UITrace2021年7月1日
+//
+//  Created by 吉田周平 on 2021/07/01.
+//
+
+import SwiftUI
+
+/// https://stackoverflow.com/questions/57018760/how-can-i-add-a-bottom-line-on-textfield-swiftui
+
+struct HorizontalLineShape: Shape {
+
+    func path(in rect: CGRect) -> Path {
+
+        let fill = CGRect(x: 0, y: 0, width: rect.size.width, height: rect.size.height)
+        var path = Path()
+        path.addRoundedRect(in: fill, cornerSize: CGSize(width: 2, height: 2))
+
+        return path
+    }
+}
+
+struct HorizontalLine: View {
+    private var color: Color? = nil
+    private var height: CGFloat = 1.0
+
+    init(color: Color, height: CGFloat = 1.0) {
+        self.color = color
+        self.height = height
+    }
+
+    var body: some View {
+        HorizontalLineShape().fill(self.color!).frame(minWidth: 0, maxWidth: .infinity, minHeight: height, maxHeight: height)
+    }
+}
